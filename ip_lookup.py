@@ -188,7 +188,7 @@ def api_length(api_file):
 	return characters												  ##
 ########################################################################
 							### /\
-							### ||
+							### ||### 1.Check API's length
 							### ||
 ##################################################################################################################################
 																																#### Read and Verify API key 
@@ -227,10 +227,10 @@ api_file.close() # Final close file																								##
 																																##
 ##################################################################################################################################
 							###||
-							###||
+							###||### 2.Copy validated API key in $api_key
 							###\/
 ##############################################
-api_file = open('greynoise_api_v2.txt','r')	#### Copy verified API key in $api_key
+api_file = open('greynoise_api_v2.txt','r')	#### Copy validated API key in $api_key
 api_key = api_file.read().replace('\n','') 	##
 api_file.close()							##
 ##############################################
@@ -240,7 +240,7 @@ api_file.close()							##
 ###########################################################################################################################################################################################
 
 
-os.chdir("IP_Lookup") # Get in SubdomainScanners folder
+os.chdir("IP_Lookup") # Get in IP_Lookup folder
 print("key",api_key)
 
 main_command = input("\033[0;37mIP Lookup/>>>\033[1;32;0m")
