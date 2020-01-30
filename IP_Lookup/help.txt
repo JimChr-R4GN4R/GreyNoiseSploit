@@ -1,0 +1,60 @@
+==============================================  IP Lookup   ==============================================
+==========================================================================================================
+Calls to identify whether or not an IP address is noise, or get more information about a given IP address.
+==========================================================================================================
+
+
+>>>context [ip] /// Get more information about a given IP address. Returns time ranges,
+      |             IP metadata (network owner, ASN, reverse DNS pointer, country), associated actors, 
+      |             activity tags, and raw port scan and web request information.
+      |
+      |             Example: >>>context 123.456.789.012
+      |
+      |--> -hname2ip  [www.host.xxx] /// If you want to check directly the context of ip with it's host's name
+                                         !Note: If a host has more than 1 IPs, then the script will choose the fisrt one!
+
+                                         Example: context -hname2ip www.host.xxx
+
+
+>>>quick [ip] /// Check whether a given IP address is “Internet background noise”, 
+      |           or has been observed scanning or attacking devices across the Internet.
+      |
+      |           Example: >>>quick 123.456.789.012
+      |
+      |--> -hname2ip  [www.host.xxx] /// If you want to check directly the context of ip with it's host's name
+                                         !Note: If a host has more than 1 IPs, then the script will choose the fisrt one!
+
+                                         Example: quick -hname2ip www.host.xxx
+
+
+>>>multi [ips] /// Check whether a set of IP addresses are 'Internet background noise', 
+      |            or have been observed scanning or attacking devices across the Internet.
+      |            This endpoint is functionality identical to the /v2/noise/quick/$ip endpoint, 
+      |            except it processes more than one checks simultaneously. 
+      |            This endpoint is useful for filtering through large log files.            
+      |
+      |            Example: >>>multi 123.456.789.001,123.456.789.002,123.456.789.003 /// Comma-delimited list of up to 1,000 IP addresses to query.
+      |
+      |--> -list [path_list.txt] /// If you want to check a ist of IPs in a text file,then this command is for you.
+                                     IPs in the list should be separated with comma (,) or space ( ) or 1 IP in every line.
+
+                                     Example: multi -list /home/r4gn4r/Desktop/ip_list.txt
+
+
+>>>ip_finder [www.host.xxx] /// If you do not know Host's IP, you can just type host's name, and the script will find it's IPs.
+
+
+
+
+Codes:
+
+    0x00: The IP has never been observed scanning the Internet
+    0x01: The IP has been observed by the GreyNoise sensor network
+    0x02: The IP has been observed scanning the GreyNoise sensor network, but has not completed a full connection, meaning this can be spoofed
+    0x03: The IP is adjacent to another host that has been directly observed by the GreyNoise sensor network
+    0x04: Reserved
+    0x05: This IP is commonly spoofed in Internet-scan activity
+    0x06: This IP has been observed as noise, but this host belongs to a cloud provider where IPs can be cycled frequently
+    0x07: This IP is invalid
+    0x08: This IP was classified as noise, but has not been observed engaging in Internet-wide scans or attacks in over 60 days
+
