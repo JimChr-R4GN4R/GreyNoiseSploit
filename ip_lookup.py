@@ -10,6 +10,7 @@ import re
 import socket
 import json
 
+
 #######################################################################################################################################
 class AutoCompleter(object):  # Custom completer																					###### Autocompleter for all script's available commands and extenders
 																																	###
@@ -34,6 +35,87 @@ completer = AutoCompleter(["context", "quick", "multi", "ip_finder", "hname2ip",
 readline.set_completer(completer.complete)																							###
 readline.parse_and_bind('tab: complete')																							###
 #######################################################################################################################################
+
+
+
+###########################################################################################################################################################################################
+##																																														###### API Area
+##																																														###
+																																														###
+def api_length(api_file):	 
+######################################################################## 
+	lines=0															  #### Check API's length
+	words=0															  ##
+	characters=0													  ##
+	for line in api_file:											  ##
+		wordslist=line.split()										  ##
+		lines=lines+1												  ##
+		words=words+len(wordslist)									  ##
+		characters += sum(len(word) for word in wordslist)			  ##
+	return characters												  ##
+########################################################################
+							### /\
+							### ||### 1.Check API's length
+							### ||
+##################################################################################################################################
+																																#### Read and Verify API key 
+##########################################################################														##
+api_file = open('greynoise_api_v2.txt','r')								#### Read API key and check it's length					##
+api_length_chars = int(api_length(api_file)) # Check API's key length	##														##
+api_file.close() # after read for while condition,close file			##														##
+##########################################################################														##
+																																##
+																																##
+while (api_length_chars != 64):	# If API's file is empty or less than 64 chars (because API keys have 64 chars)					##
+																																##
+	##############################################################################												##
+																				##												##
+	api_file = open('greynoise_api_v2.txt','w')	#open file with write perms		##												##
+																				##												##
+																				##												##
+	api_key = input("Please type your API here:")								##												##
+																				##												##
+																				##												##
+	api_file.write(api_key)														##### Write API key in greynoise_api_v2.txt		##
+	api_file.close()															##												##
+	##############################################################################												##
+																																##
+																																##
+	######################################################																		##
+	api_file = open('greynoise_api_v2.txt','r')			#### Check new API key's length											##
+	api_length_chars = int(api_length(api_file))		##																		##
+	######################################################																		##
+																																##
+																																##
+																																##
+																																##
+																																##
+api_file.close() # Final close file																								##
+																																##
+##################################################################################################################################
+							###||
+							###||### 2.Copy validated API key in $api_key
+							###\/
+##############################################
+api_file = open('greynoise_api_v2.txt','r')	#### Copy validated API key in $api_key
+api_key = api_file.read().replace('\n','') 	##
+api_file.close()							##
+##############################################
+																																														###
+##																																														###
+##																																														###
+###########################################################################################################################################################################################
+
+
+
+def hname2ip(host_name):
+	########################################################################################################
+	ip = call("host '"+host_name+"' | awk '/has address/ { print $4 }' > temp.txt", shell=True)			  #### Find host's ip
+	ip = open('temp.txt','r')																			  ##
+	ip = ip.readline().replace('\n','')																	  ##
+	open('temp.txt', 'w').close() # erase everything in temp.txt										  ##
+	return ip																							  ##
+	########################################################################################################
 
 
 
@@ -66,7 +148,6 @@ def check_valid_ip(ip):
 		
 
 
-
 def file_name_generator():
 	####################################################
 	time = strftime("%Y-%m-%d:-:%H:%M:%S", gmtime())  #### get time and make file's name with the results (main_command:-:target:-:date:-:time.txt)
@@ -74,7 +155,6 @@ def file_name_generator():
 	file_name = file_name.replace('/','_')			  ##
 	return file_name								  ##
 	####################################################
-
 
 
 
@@ -157,96 +237,19 @@ def results(file_name):
 	##################################
 
 
-
-
-def hname2ip(host_name):
-	########################################################################################################
-	ip = call("host '"+host_name+"' | awk '/has address/ { print $4 }' > temp.txt", shell=True)			  #### find host's ip
-	ip = open('temp.txt','r')																			  ##
-	ip = ip.readline().replace('\n','')																	  ##
-	open('temp.txt', 'w').close() # erase everything in temp.txt										  ##
-	return ip																							  ##
-	########################################################################################################
-
-
-
-
-###########################################################################################################################################################################################
-##																																														###### API Area
-##																																														###
-																																														###
-def api_length(api_file):	 
-######################################################################## 
-	lines=0															  #### Check API's length
-	words=0															  ##
-	characters=0													  ##
-	for line in api_file:											  ##
-		wordslist=line.split()										  ##
-		lines=lines+1												  ##
-		words=words+len(wordslist)									  ##
-		characters += sum(len(word) for word in wordslist)			  ##
-	return characters												  ##
-########################################################################
-							### /\
-							### ||### 1.Check API's length
-							### ||
-##################################################################################################################################
-																																#### Read and Verify API key 
-##########################################################################														##
-api_file = open('greynoise_api_v2.txt','r')								#### Read API key and check it's length					##
-api_length_chars = int(api_length(api_file)) # Check API's key length	##														##
-api_file.close() # after read for while condition,close file			##														##
-##########################################################################														##
-																																##
-																																##
-while (api_length_chars != 64):	# If API's file is empty or less than 64 chars (because API keys have 64 chars)					##
-																																##
-	##############################################################################												##
-																				##												##
-	api_file = open('greynoise_api_v2.txt','w')	#open file with write perms		##												##
-																				##												##
-																				##												##
-	api_key = input("Please type your API here:")								##												##
-																				##												##
-																				##												##
-	api_file.write(api_key)														##### Write API key in greynoise_api_v2.txt		##
-	api_file.close()															##												##
-	##############################################################################												##
-																																##
-																																##
-	######################################################																		##
-	api_file = open('greynoise_api_v2.txt','r')			#### Check new API key's length											##
-	api_length_chars = int(api_length(api_file))		##																		##
-	######################################################																		##
-																																##
-																																##
-																																##
-																																##
-																																##
-api_file.close() # Final close file																								##
-																																##
-##################################################################################################################################
-							###||
-							###||### 2.Copy validated API key in $api_key
-							###\/
-##############################################
-api_file = open('greynoise_api_v2.txt','r')	#### Copy validated API key in $api_key
-api_key = api_file.read().replace('\n','') 	##
-api_file.close()							##
-##############################################
-																																														###
-##																																														###
-##																																														###
-###########################################################################################################################################################################################
-
-
 os.chdir("IP_Lookup") # Get in IP_Lookup folder
-print("key",api_key)
 
-main_command = input("\033[0;37mIP Lookup/>>>\033[1;32;0m")
+##############################################################
+main_command = input("\033[0;37mIP Lookup/>>>\033[1;32;0m") #### Input
+##############################################################
 
 
 while main_command != "exit":
+###################################################################################################################################################################################################################################################################
+###																																																																###
+###																																																																###
+###																																																																###
+###																																																																###
 
 	extender = 0 # If extender=0, then user did not put -extender.
 
@@ -265,7 +268,7 @@ while main_command != "exit":
 		##################################################
 
 
-		##############################################################################################--Context
+		##############################################################################################--context
 		if command == "context":
 
 			ip = sub_command[1]
@@ -279,7 +282,7 @@ while main_command != "exit":
 
 
 				file_name = file_name_generator() # generate save file's name
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/context/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True) # save API's results in file_name.txt
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/context/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True) # save API's results in file_name.txt
 				results(file_name) # print(results)
 
 			elif extender > 0:
@@ -296,13 +299,11 @@ while main_command != "exit":
 
 
 				print()
-
 				file_name = file_name_generator()
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/context/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/context/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
 				results(file_name) # print(results)
-
 				print()
-
+		##############################################################################################__context
 
 
 
@@ -320,10 +321,10 @@ while main_command != "exit":
 
 
 				file_name = file_name_generator() # generate save file's name
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/quick/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/quick/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
 				results(file_name) # print(results)
 
-			elif extender > 0:
+			elif extender > 0: # If -extender is not -hname2ip, then print error
 				print("Invalid extender!")
 
 			else: # quick xxx.xxx.xxx.xxx
@@ -338,18 +339,11 @@ while main_command != "exit":
 				##################################################
 
 				print()
-
 				file_name = file_name_generator()
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/quick/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
-				
-
-
-
-				results_quick_multi(file_name)
-				#results(file_name) # print(results)
-
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/quick/"+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
+				results_quick_multi(file_name) # Print results
 				print()
-
+		##############################################################################################__quick
 
 
 
@@ -363,15 +357,14 @@ while main_command != "exit":
 			if sub_command[1] == "-list": # multi -list list/path/ip_list.txt
 
 				list_path = sub_command[2]
-				list_path_file = open(list_path,'r') 
-				list_path_file = list_path_file.read().replace('\n',',').replace(' ',',').replace(',,',',')  
+				list_path_file = open(list_path,'r')
+				list_path_file = list_path_file.read().replace('\n',',').replace(' ',',').replace(',,',',')
 
 				print()
 				ip = list_path.replace('/','-') # give at filename,the list path
 				file_name = file_name_generator()
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/multi/quick?ips="+list_path_file+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/multi/quick?ips="+list_path_file+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
 				results(file_name) # print(results)
-
 				print()
 
 			elif extender > 0:
@@ -382,13 +375,11 @@ while main_command != "exit":
 				ip = sub_command[1]
 
 				print()
-
 				file_name = file_name_generator()
-				rc = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/multi/quick?ips="+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
+				shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/noise/multi/quick?ips="+ip+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name , shell=True)
 				results(file_name) # print(results)
-
 				print()
-
+		##############################################################################################__multi
 
 
 
@@ -398,8 +389,8 @@ while main_command != "exit":
 
 			ip = sub_command[1]
 
-			rc = call("host '"+ip+"' | awk '/has address/ { print $4 }'", shell=True)
-
+			shell_command = call("host '"+ip+"' | awk '/has address/ { print $4 }'", shell=True)
+		##############################################################################################__ip_finder
 
 
 
@@ -408,26 +399,42 @@ while main_command != "exit":
 		elif command == "help":
 
 			print("\033[0;37m")
-			rc = call("cat help.txt", shell=True)
+			shell_command = call("cat help.txt", shell=True)
 			print("\033[1;32;0m")
+		##############################################################################################__help
 
 
 
 
+		###############################################--clear
+		elif command == "clear": 
+
+			shell_command = call("clear", shell=True)
+		###############################################__clear
 
 
-		elif command == "clear": ###############################################--multi
 
-			rc = call("clear", shell=True)
-
+		#################################################--exit
 		elif command == "exit":
 			call("cd .. ; ./greynoise.sh", shell=True)
+		#################################################__exit
 
-	except:
-		pass
 
+
+	##############
+	except:		#### If there is no or not valid command,then read again
+		pass	##
+	##############
  
 
 
+	##############################################################
+	main_command = input("\033[0;37mIP Lookup/>>>\033[1;32;0m") #### Input
+	##############################################################
 
-	main_command = input("\033[0;37mIP Lookup/>>>\033[1;32;0m")
+
+###																																																															###
+###																																																																###
+###																																																																###
+###																																																																###
+###################################################################################################################################################################################################################################################################
