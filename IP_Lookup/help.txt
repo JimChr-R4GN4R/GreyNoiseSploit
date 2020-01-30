@@ -35,26 +35,11 @@ Calls to identify whether or not an IP address is noise, or get more information
       |
       |            Example: >>>multi 123.456.789.001,123.456.789.002,123.456.789.003 /// Comma-delimited list of up to 1,000 IP addresses to query.
       |
-      |--> -list [path_list.txt] /// If you want to check a ist of IPs in a text file,then this command is for you.
-                                     IPs in the list should be separated with comma (,) or space ( ) or 1 IP in every line.
+      |--> -list [path_list.txt] /// If you want to check a list of IPs in a text file,then this command is for you.
+                                     IPs in the list should be separated with comma (,) or space ( ) or 1 IP per line.
 
                                      Example: multi -list /home/r4gn4r/Desktop/ip_list.txt
 
 
 >>>ip_finder [www.host.xxx] /// If you do not know Host's IP, you can just type host's name, and the script will find it's IPs.
-
-
-
-
-Codes:
-
-    0x00: The IP has never been observed scanning the Internet
-    0x01: The IP has been observed by the GreyNoise sensor network
-    0x02: The IP has been observed scanning the GreyNoise sensor network, but has not completed a full connection, meaning this can be spoofed
-    0x03: The IP is adjacent to another host that has been directly observed by the GreyNoise sensor network
-    0x04: Reserved
-    0x05: This IP is commonly spoofed in Internet-scan activity
-    0x06: This IP has been observed as noise, but this host belongs to a cloud provider where IPs can be cycled frequently
-    0x07: This IP is invalid
-    0x08: This IP was classified as noise, but has not been observed engaging in Internet-wide scans or attacks in over 60 days
 
