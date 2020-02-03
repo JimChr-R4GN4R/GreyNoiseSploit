@@ -66,7 +66,7 @@ api_file.close() # after read for while condition,close file            ##      
 ##########################################################################                                                      ##
                                                                                                                                 ##
                                                                                                                                 ##
-while (api_length_chars != 64): # If API's file is empty or less than 64 chars (because API keys have 64 chars)                 ##
+while (api_length_chars != 64): # If API's file is empty or diff than 64 chars (because API keys have 64 chars)                 ##
                                                                                                                                 ##
     ##############################################################################                                              ##
                                                                                 ##                                              ##
