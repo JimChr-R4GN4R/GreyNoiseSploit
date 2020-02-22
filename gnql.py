@@ -108,7 +108,7 @@ while (api_length_chars != 64): # If API's file is empty or less than 64 chars (
 																																##
 																																##
 																																##
-api_file.close() # Final close file                                                                                             ##
+api_file.close() # Final close file                                                                                              ##
 																																##
 ##################################################################################################################################
 							###||
