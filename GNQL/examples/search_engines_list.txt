@@ -1,0 +1,4 @@
+actor:"BingBot"
+actor:"Baidu Spider"
+actor:"Yandex Search Engine"
+actor:"GoogleBot"

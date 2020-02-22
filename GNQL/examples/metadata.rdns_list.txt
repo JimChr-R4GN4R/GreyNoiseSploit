@@ -1,0 +1,3 @@
+metadata.rdns:*.gov*
+metadata.rdns:*.com
+metadata.rdns:<what_you_want>

@@ -1,0 +1,2 @@
+raw_data.ja3.fingerprint:795bc7ce13f60d61e9ac03611dd36d90
+raw_data.ja3.fingerprint:<type_the_fingerprint_code>

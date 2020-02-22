@@ -1,0 +1,16 @@
+raw_data.scan.protocol:icmp
+raw_data.scan.protocol:ip
+raw_data.scan.protocol:tcp
+raw_data.scan.protocol:egp
+raw_data.scan.protocol:igp
+raw_data.scan.protocol:udp
+raw_data.scan.protocol:gre
+raw_data.scan.protocol:swipe
+raw_data.scan.protocol:narp
+raw_data.scan.protocol:mobile
+raw_data.scan.protocol:sun-nd
+raw_data.scan.protocol:iso-ip
+raw_data.scan.protocol:eigrp
+raw_data.scan.protocol:ospfigp
+raw_data.scan.protocol:ipip
+raw_data.scan.protocol:pim

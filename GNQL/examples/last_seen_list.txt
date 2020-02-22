@@ -1,0 +1,3 @@
+last_seen:today
+last_seen:2020-02-05
+last_seen:<put_date_here>
