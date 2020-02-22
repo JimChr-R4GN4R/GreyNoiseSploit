@@ -42,7 +42,7 @@ class AutoCompleter(object):  # Custom completer                                
 def List_Chooser(AutoComplete_List_number):
 	if (AutoComplete_List_number == 1):
 
-		commands_list = [ "help", "c_help", "ip_finder","ip:", "classification:", "first_seen:", "last_seen:", "actor:", "tags:", "metadata.category:", "metadata.os:", "metadata.country:", "metadata.country_code:", "metadata.city:", "metadata.organization:", "metadata.rdns:", "metadata.asn:", "metadata.tor:", "raw_data.scan.port:", "raw_data.scan.protocol:", "raw_data.web.paths:", "raw_data.web.useragents:", "raw_data.ja3.fingerprint:", "raw_data.ja3.port:", "examples ip", "examples classification", "examples first_seen", "examples last_seen", "examples actor", "examples tags", "examples metadata.category", "examples metadata.country", "examples metadata.country_code", "examples metadata.city", "examples metadata.organization", "examples metadata.rdns", "examples metadata.asn", "examples metadata.tor", "examples raw_data.scan.port", "examples raw_data.scan.protocol", "examples raw_data.web.paths", "examples raw_data.web.useragents", "examples raw_data.ja3.fingerprint", "examples raw_data.ja3.port", "examples tools", "examples worms", "examples search_engines", "examples metadata.os" ]
+		commands_list = [ "help", "c_help", "ip_finder", "stats", "query=", "ip:", "classification:", "first_seen:", "last_seen:", "actor:", "tags:", "metadata.category:", "metadata.os:", "metadata.country:", "metadata.country_code:", "metadata.city:", "metadata.organization:", "metadata.rdns:", "metadata.asn:", "metadata.tor:", "raw_data.scan.port:", "raw_data.scan.protocol:", "raw_data.web.paths:", "raw_data.web.useragents:", "raw_data.ja3.fingerprint:", "raw_data.ja3.port:", "examples ip", "examples classification", "examples first_seen", "examples last_seen", "examples actor", "examples tags", "examples metadata.category", "examples metadata.country", "examples metadata.country_code", "examples metadata.city", "examples metadata.organization", "examples metadata.rdns", "examples metadata.asn", "examples metadata.tor", "examples raw_data.scan.port", "examples raw_data.scan.protocol", "examples raw_data.web.paths", "examples raw_data.web.useragents", "examples raw_data.ja3.fingerprint", "examples raw_data.ja3.port", "examples tools", "examples worms", "examples search_engines", "examples metadata.os" ]
 
 	completer = AutoCompleter(commands_list) # autocomplete list (commands + extenders)
 	readline.set_completer(completer.complete)  
@@ -203,6 +203,21 @@ while main_command != "exit":
 			results(file_name) # print(results)
 			print()
 		##############################################################################################__query
+
+
+		##############################################################################################--stats
+		elif command.startswith( "stats" ) == True:
+
+			#################################################
+			command = main_command.replace('stats ','')    #### make command take only the query
+			file_name = file_name_generator()              ##
+			file_name = "stats_"+file_name                 #### Then add at filename stats_query=....
+			#################################################
+			print()
+			shell_command = call("curl -s -X GET 'https://api.greynoise.io/v2/experimental/gnql/stats?"+command+"' -H 'Accept: application/json' -H 'key: "+api_key+"' | jq > "+file_name, shell=True)
+			results(file_name) # print(results)
+			print()
+		##############################################################################################--stats
 
 
 		##############################################################################################--ip_finder
