@@ -4,4 +4,4 @@ GreyNoiseSploit is a script that help you use GreyNoise.io API simply,fast and w
 # ToDo List:
 - Add an updater
 - Add scroller parameter in gnql
-- Add updater at autocomplete choices
+- Add updater for autocomplete choices
