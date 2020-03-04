@@ -5,11 +5,35 @@ GREEN='\033[1;32m'
 ORANGE='\033[0;33m'
 GREY='\033[0;37m'
 
+current_version='1.0.0'
 
-#############################
-chmod +x gnql.sh           #### Set execute permissions at GreyNoise's scripts
-chmod +x metadata.sh       ##
-#############################
+
+########################################################
+wget -q --spider http://duckduckgo.com                #### Check internet connection by viewing duckduckgo.com
+                                                      ##
+if [ $? -eq 0 ]; then                                 ##
+    clear                                             ##
+                                                      ##
+else                                                  ##
+    wget -q --spider http://google.com                #### In case duckduckgo.com is offline,then check google.com to confirm that there is no internet connection
+                                                      ##
+    if [ $? -eq 0 ]; then                             ##
+        clear                                         ##
+    else                                              ##
+        echo "You do not have internet connection"    ##
+        exit                                          ##
+    fi                                                ##
+fi                                                    ##
+########################################################
+
+
+
+pkgs='jq curl' # required packages
+################################################
+if ! dpkg -s $pkgs >/dev/null 2>&1; then      #### If packages are not installed,then install them
+  sudo apt-get install $pkgs                  ##
+fi                                            ##
+################################################
 
 
 logo(){
@@ -43,26 +67,29 @@ echo -e "          +hds    ayhhhyssooooosyhhhy+         "
 echo -e "             ohdy      +++0000+++              "
 echo -e "                +shhhyso++////+/               "
 echo -e "                                               "                                       
-echo -e "                                               ______      __                   "
-echo -e "  ____                  _   _       _          \  ___|_ __ \ \           _ _    "
-echo -e " / ___|_ __ ___ _   _  | \ | | ___ (_)___  ___  \ \  | '_ \ \ \     ___ (_) |_  "
-echo -e "| |  _| '__/ _ \ | | | |  \| |/ _ \| / __|/ _ \  > > | |_)   > \   / _ \| | __| "
-echo -e "| |_| | | |  __/ |_| | | |\  | (_) | \__ \  __/ / /__| .__/ / ^ \ | (_) | | |_  "
-echo -e " \____|_|  \___|\__, | |_| \_|\___/|_|___/\___|/_____|_|   /_/ \_\ \___/|_|\__| "
-echo -e "                |___/                                                           "
-                                               
+echo -e "                                               ______      __                                    "
+echo -e "  ____                  _   _       _          \  ___|_ __ \ \           _ _                     "
+echo -e " / ___|_ __ ___ _   _  | \ | | ___ (_)___  ___  \ \  | '_ \ \ \     ___ (_) |_                   "
+echo -e "| |  _| '__/ _ \ | | | |  \| |/ _ \| / __|/ _ \  > > | |_)   > \   / _ \| | __|                  "
+echo -e "| |_| | | |  __/ |_| | | |\  | (_) | \__ \  __/ / /__| .__/ / ^ \ | (_) | | |_                   "
+echo -e " \____|_|  \___|\__, | |_| \_|\___/|_|___/\___|/_____|_|   /_/ \_\ \___/|_|\__| $current_version "
+echo -e "                |___/                                                                            "
+
 
 }
 logo
+
 menu(){
 echo -e "${GREY}"
 echo "==========  Services  =========="
 echo "==         1) Ip Lookup       =="
 echo "==         2) GNQL            =="
 echo "==         3) Metadata        =="
+echo "==         4) Update Check    =="
 echo "================================"
 }
 menu
+
 while [[ "$option" != "exit" ]]; do
 
 printf "${GREY}└──╼>>>${NC}"; read option
@@ -79,6 +106,14 @@ elif [[ "$option" == "3" ]]; then
 	curl -s -X GET 'https://api.greynoise.io/v2/meta/metadata' -H 'Accept: application/json' -H "key: $api_key" | jq > metadata_output.txt
 	cat metadata_output.txt
 	cd ..
+
+elif [[ "$option" == "4" ]]; then
+	latest_version=$(curl -s https://raw.githubusercontent.com/JimChr-R4GN4R/GreyNoiseSploit/master/.version.md)
+	if [[ "$latest_version" == "$current_version" ]]; then
+		echo "You are up to date!"
+	else
+		echo "Latest Version is: $latest_version"
+	fi
 
 elif [[ "$option" == "clear" ]]; then
 	clear
