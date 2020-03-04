@@ -52,4 +52,6 @@
                                                          -a extender works only for actor and tags facet. If you type another
                                                          facet like 'ip', then it will show you results like you had not add
                                                          the extender.
-                                                         
+                                        
+
+>>>exit /// Type this command if you want to go to the main menu.                 
