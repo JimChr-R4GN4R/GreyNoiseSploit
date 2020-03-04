@@ -1,0 +1,4 @@
+>>>menu /// Shows you the menu.
+
+>>>clear /// If you want to clear your screen,just type this command.
+

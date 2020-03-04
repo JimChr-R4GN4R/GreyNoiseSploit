@@ -5,7 +5,7 @@ GREEN='\033[1;32m'
 ORANGE='\033[0;33m'
 GREY='\033[0;37m'
 
-current_version='1.0.0'
+current_version='1.0.1'
 
 
 ########################################################
@@ -121,6 +121,9 @@ elif [[ "$option" == "clear" ]]; then
 
 elif [[ "$option" == "menu" ]]; then
 	menu
+elif [[ "$option" == "help" ]]; then
+    echo -e "${GREY}"
+    cat help.txt
 
 elif [[ "$option" == "exit" ]]; then
 	exit
