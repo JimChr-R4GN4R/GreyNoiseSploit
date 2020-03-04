@@ -13,7 +13,7 @@ Calls to identify whether or not an IP address is noise, or get more information
       |--> -hname2ip  [www.host.xxx] /// If you want to check directly the context of ip with it's host's name
                                          !Note: If a host has more than 1 IPs, then the script will choose the fisrt one!
 
-                                         Example: context -hname2ip www.host.xxx
+                                         Example: >>>context -hname2ip www.host.xxx
 
 
 >>>quick [ip] /// Check whether a given IP address is “Internet background noise”, 
@@ -24,21 +24,21 @@ Calls to identify whether or not an IP address is noise, or get more information
       |--> -hname2ip  [www.host.xxx] /// If you want to check directly the context of ip with it's host's name
                                          !Note: If a host has more than 1 IPs, then the script will choose the fisrt one!
 
-                                         Example: quick -hname2ip www.host.xxx
+                                         Example: >>>quick -hname2ip www.host.xxx
 
 
 >>>multi [ips] /// Check whether a set of IP addresses are 'Internet background noise', 
       |            or have been observed scanning or attacking devices across the Internet.
       |            This endpoint is functionality identical to the /v2/noise/quick/$ip endpoint, 
       |            except it processes more than one checks simultaneously. 
-      |            This endpoint is useful for filtering through large log files.            
+      |            This endpoint is useful for filtering through large log files.
       |
       |            Example: >>>multi 123.456.789.001,123.456.789.002,123.456.789.003 /// Comma-delimited list of up to 1,000 IP addresses to query.
       |
       |--> -list [path_list.txt] /// If you want to check a list of IPs in a text file,then this command is for you.
                                      IPs in the list should be separated with comma (,) or space ( ) or 1 IP per line.
 
-                                     Example: multi -list /home/r4gn4r/Desktop/ip_list.txt
+                                     Example: >>>multi -list /home/r4gn4r/Desktop/ip_list.txt
 
 
 >>>ip_finder [www.host.xxx] /// If you do not know Host's IP, you can just type host's name, and the script will find it's IPs.
