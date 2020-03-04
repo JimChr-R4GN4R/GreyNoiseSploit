@@ -43,3 +43,5 @@ Calls to identify whether or not an IP address is noise, or get more information
 
 >>>ip_finder [www.host.xxx] /// If you do not know Host's IP, you can just type host's name, and the script will find it's IPs.
 
+
+>>>exit /// Type this command if you want to go to the main menu.
