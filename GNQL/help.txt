@@ -10,28 +10,28 @@
                |          If we do our job correctly, each individual GNQL query that brings our users and customers sufficient value will eventually 
                |          be transitioned into it's own individual offering.
                |
-               |          Example1: query=first_seen:today
-               |          Example2: query=classification:malicious AND first_seen:today /// If you want to add more than one facet, then use ' AND ' between them.
+               |          Example1: >>>query=first_seen:today
+               |          Example2: >>>query=classification:malicious AND first_seen:today /// If you want to add more than one facet, then use ' AND ' between them.
                |          
          Extra Parameters
                |
                |--> size=[integer] /// Optional. Size parameter is the maximum amount of results to grab and can be used if you add &size=[int] after query parameter. 
                                                  That means if size=3,then it will give you three results (IPs).      
                                        
-                                       Example: query=first_seen:today&size=3                                         
+                                       Example: >>>query=first_seen:today&size=3                                         
 
 
 >>>stats query=[your_query] /// Get aggregate statistics for the top organizations, actors, tags, ASNs, countries, classifications, and operating systems
                     |           of all the results of a given GNQL query.
                     |
-                    |          Example1: stats query=first_seen:today
-                    |          Example2: stats query=classification:malicious AND first_seen:today /// If you want to add more than one facet, then use ' AND ' between them. 
+                    |          Example1: >>>stats query=first_seen:today
+                    |          Example2: >>>stats query=classification:malicious AND first_seen:today /// If you want to add more than one facet, then use ' AND ' between them. 
                     |
               Extra Parameters
                     |
                     |--> count=[integer] /// Optional. Number of top aggregates to grab
 
-                                             Example: stats query=first_seen:today&count=50000 
+                                             Example: >>>stats query=first_seen:today&count=50000 
 
 
 
@@ -42,9 +42,9 @@
 
 >>>examples [facent] /// Get examples of specific facet. Facets are ip: , tags: etc.
                            
-                         Example1: examples ip
-                         Example2: examples ip: /// Cause of autocomplete issues, I made this give the same result as Example1.
-                         Example3: examples -a actor /// Actors are splitted to Actors and Search Engines.
+                         Example1: >>>examples ip
+                         Example2: >>>examples ip: /// Cause of autocomplete issues, I made this give the same result as Example1.
+                         Example3: >>>examples -a actor /// Actors are splitted to Actors and Search Engines.
                                                          Search Engines also are called with actor:<search_engine_name> .
                                                          That means if you type 'examples actor' it will give you actors
                                                          without Search Engines,but if you add -a extender,it will print
